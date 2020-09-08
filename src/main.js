@@ -4,7 +4,13 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-export const eventBus = new Vue()
+export const eventBus = new Vue({
+  methods: {
+    changeAge (age) {
+      this.$emit('ageEdited', age)
+    }
+  }
+})
 
 new Vue({
   render: h => h(App)

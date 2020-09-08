@@ -16,9 +16,9 @@ export default {
   },
   methods: {
     changeAge () {
-      this.myAge = 30
+      this.age = 30
       // this.$emit('ageEdited', this.myAge)
-      eventBus.$emit('ageEdited', this.myAge)
+      eventBus.changeAge(this.age)
     }
   }
 }

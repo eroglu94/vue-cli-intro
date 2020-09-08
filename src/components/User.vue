@@ -4,10 +4,11 @@
     <p>Burası parent component yani herşeyin import edildiği component :)</p>
     <button @click="changeName">Değiştir</button>
     <p>childden gelen yazı  {{ childData }}</p>
+    <p>İlk yaş değeri : {{age}}</p>
     <hr />
     <div class="row">
-      <app-user-detail :name="title" @data="childData = $event"></app-user-detail>
-      <app-user-edit></app-user-edit>
+      <app-user-detail :age="age" :name="title" @data="childData = $event"></app-user-detail>
+      <app-user-edit :age="age" @ageEdited="age = $event"></app-user-edit>
     </div>
   </div>
 </template>
@@ -22,7 +23,8 @@ export default {
   data () {
     return {
       title: 'Gökhan',
-      childData: ''
+      childData: '',
+      age: 25
     }
   },
   methods: {

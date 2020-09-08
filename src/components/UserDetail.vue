@@ -4,13 +4,15 @@
     <p>Ben User.vue isimli Parent Component'in içerisindeki bir Child componentim</p>
     <p>Kullanici Adı : {{ name }}</p>
     <p>Kullanici Adı : {{ switchName() }}</p>
+    <p> Kullanıcı Yaşı : {{ age }}</p>
     <button @click="sendToParent">Veriyi Parenta Gönder</button>
   </div>
 </template>
 <script>
 export default {
   props: {
-    name: String
+    name: String,
+    age: Number
   },
   methods: {
     switchName () {

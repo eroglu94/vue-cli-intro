@@ -7,18 +7,18 @@
   </div>
 </template>
 <script>
+
+import { eventBus } from '../main' // imd
+
 export default {
   props: {
     age: Number
   },
-  data () {
-    return {
-      myAge: this.age
-    }
-  },
   methods: {
     changeAge () {
-      this.$emit('ageEdited', 30)
+      this.myAge = 30
+      // this.$emit('ageEdited', this.myAge)
+      eventBus.$emit('ageEdited', this.myAge)
     }
   }
 }

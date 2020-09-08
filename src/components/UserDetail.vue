@@ -4,12 +4,15 @@
     <p>Ben User.vue isimli Parent Component'in içerisindeki bir Child componentim</p>
     <p>Kullanici Adı : {{ name }}</p>
     <p>Kullanici Adı : {{ switchName() }}</p>
-    <p> Kullanıcı Yaşı : {{ age }}</p>
+    <p>Kullanıcı Yaşı : {{ age }}</p>
     <button @click="sendToParent">Veriyi Parenta Gönder</button>
   </div>
 </template>
 <script>
+import { eventBus } from '../main'
+
 export default {
+
   props: {
     name: String,
     age: Number
@@ -21,6 +24,11 @@ export default {
     sendToParent () {
       this.$emit('data', 'Kablosuz Kedi')
     }
+  },
+  created () {
+    eventBus.$on('ageEdited', (age) => {
+      this.age = age
+    })
   }
 }
 </script>

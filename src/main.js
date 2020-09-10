@@ -4,13 +4,8 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-export const eventBus = new Vue({
-  methods: {
-    changeAge (age) {
-      this.$emit('ageEdited', age)
-    }
-  }
-})
+// eslint-disable-next-line no-unused-vars
+export const serverBus = new Vue()
 
 new Vue({
   render: h => h(App)

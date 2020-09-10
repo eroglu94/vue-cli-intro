@@ -1,13 +1,36 @@
 <template>
-  <app-user></app-user>
+  <div class="container">
+    <app-header></app-header>
+    <hr />
+    <div class="row">
+      <app-servers></app-servers>
+      <app-server-details></app-server-details>
+    </div>
+    <hr />
+    <app-footer></app-footer>
+  </div>
 </template>
 
 <script>
-import User from './components/User'
+import Header from './components/Common/Header'
+import Footer from './components/Common/Footer'
+import Servers from './components/Server/Servers'
+import ServerDetails from './components/Server/ServerDetails'
 
 export default {
+  data () {
+    return {
+      servers: []
+    }
+  },
   components: {
-    appUser: User
+    appHeader: Header,
+    appFooter: Footer,
+    appServers: Servers,
+    appServerDetails: ServerDetails
   }
 }
 </script>
+
+<style>
+</style>

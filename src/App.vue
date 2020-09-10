@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <app-header></app-header>
-    <hr />
+    <hr>
     <div class="row">
       <app-servers></app-servers>
       <app-server-details></app-server-details>
     </div>
-    <hr />
+    <hr>
     <app-footer></app-footer>
   </div>
 </template>
@@ -18,11 +18,6 @@ import Servers from './components/Server/Servers'
 import ServerDetails from './components/Server/ServerDetails'
 
 export default {
-  data () {
-    return {
-      servers: []
-    }
-  },
   components: {
     appHeader: Header,
     appFooter: Footer,
@@ -33,4 +28,5 @@ export default {
 </script>
 
 <style>
+
 </style>

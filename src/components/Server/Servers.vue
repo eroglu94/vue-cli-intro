@@ -1,26 +1,23 @@
 <template>
   <div class="col-xs-12 col-sm-6">
     <ul class="list-group">
-      <!-- li farklı bir comp olacak, array olacak, array componmente gönderilecek,
-      id si olacak.  https://prnt.sc/udxepr-->
-
-      <li
-        class="list-group-item"
-        @click="selectServer(server)"
-        v-for="server in servers"
-      >Sunucu #{{ server.id }} - {{ server.status }}</li>
+     <app-server @click.native="sendToDetail(server)" v-for="server in servers" :serverData="server"></app-server>
     </ul>
   </div>
 </template>
 
 <script>
-import { serverBus } from '../../main'
+import Server from './Server'
+import { eventBus } from '../../main'
 
 export default {
+  components: {
+    appServer: Server
+  },
   data () {
     return {
       servers: [
-        { id: 1, status: 'Kritik' },
+        { id: 1, status: 'kritik' },
         { id: 2, status: 'Normal' },
         { id: 3, status: 'Tehlikede' },
         { id: 4, status: 'Bilinmiyor' },
@@ -29,14 +26,10 @@ export default {
     }
   },
   methods: {
-    selectServer (server) {
-      serverBus.$emit('selectedServer', server)
-      serverBus.$emit('servers', this.servers)
+    sendToDetail (server) {
+      eventBus.sendToServerData(server)
     }
-  },
-  created () {
-    console.log('Server Bilgisi Duyruldu')
-    serverBus.$emit('servers', this.servers)
   }
 }
+
 </script>

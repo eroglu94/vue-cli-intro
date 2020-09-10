@@ -4,8 +4,13 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-// eslint-disable-next-line no-unused-vars
-export const serverBus = new Vue()
+export const eventBus = new Vue({
+  methods: {
+    sendToServerData (serverData) {
+      this.$emit('serverDataSent', serverData)
+    }
+  }
+})
 
 new Vue({
   render: h => h(App)

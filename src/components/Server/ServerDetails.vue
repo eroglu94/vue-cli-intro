@@ -1,38 +1,31 @@
 <template>
-  <div class="col-xs-12 col-sm-6">
-    <p>{{ selectedServer.status }}</p>
-<button @click="changeStatus"> Change Status</button>
-    <!-- servera tıklandığında serverin bilgisi gelecek, button olacak
-    buttona tıklandığında status normal olacak-->
+  <div class="col-xs-12 col-sm-6" v-if="Object.keys(server).length === 0">
+    <p>Sunucu Bilgisi güncel değil!!</p>
+  </div>
+
+  <div class="col-xs-12 col-sm-6" v-else>
+    <h3>Sunucu : {{server.id}}</h3>
+    <p>Sunucu Durumu : {{ server.status }}</p>
+    <button class="btn btn-primary btn-xs" @click="changeServerStatus">Durumu Düzelt</button>
   </div>
 </template>
 <script>
-import { serverBus } from '../../main'
-
+import { eventBus } from '../../main'
 export default {
-  methods: {
-    changeStatus () {
-      console.log(this.servers)
-      this.servers[this.selectedServer.id - 1].status = 'Normal'
-    }
-  },
   data () {
     return {
-      selectedServer: {},
-      servers: []
+      server: {}
     }
   },
   created () {
-    serverBus.$on('selectedServer', (selectedServer) => {
-      console.log('yeni server secildi')
-      this.selectedServer = selectedServer
+    eventBus.$on('serverDataSent', (data) => {
+      this.server = data
     })
-
-    serverBus.$on('servers', (servers) => {
-      console.log('server alındı')
-      this.servers = servers
-    })
+  },
+  methods: {
+    changeServerStatus () {
+      this.server.status = 'Normal'
+    }
   }
 }
-
 </script>

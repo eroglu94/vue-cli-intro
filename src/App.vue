@@ -4,7 +4,7 @@
       <div class="col-md-6 col-md-offset-3">
         <app-memory>
           <h1 slot="heading">Güzel bir gün</h1>
-          <p slot="content"> Bu çok güzel bir anıydı</p>
+          <p> Bu çok güzel bir anıydı</p>
         </app-memory>
       </div>
       </div>

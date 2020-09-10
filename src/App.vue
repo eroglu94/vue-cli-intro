@@ -1,50 +1,49 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-xs-12">
         <br />
-        <br />
-        <button @click="selectedComponent = 'appMemory'" class="btn-sm btn btn-primary">appMemory</button>
-        <button
-          @click="selectedComponent = 'appNewMemory'"
-          class="btn-sm btn btn-primary"
-        >AppNewMemory</button>
-        <button @click="selectedComponent = 'appAuthor'" class="btn-sm btn btn-primary">AppAuthor</button>
-        <hr />
-        <p>{{ selectedComponent }}</p>
+        <button @click="selectedTheme = 'appBlue'" class="btn btn-primary">Mavi Temayı Yükle</button>
+        <button @click="selectedTheme = 'appGreen'" class="btn btn-success">Yeşil Temayı Yükle</button>
+        <button @click="selectedTheme = 'appRed'" class="btn btn-danger">Kırmızı Temayı Yükle</button>
         <hr />
 
-        <keep-alive>
-          <component :is="selectedComponent">
-            <h1 slot="heading">Güzel bir gün</h1>
-            <p>Bu çok güzel bir anıydı</p>
-          </component>
-        </keep-alive>
+        <!-- <app-blue>
+          <h1 slot="maviSlot">Bu Mavidir</h1>
+        </app-blue>
+        <app-green>
+          <h1 slot="yesilSlot">Bu Yeşildir</h1>
+        </app-green>
+        <app-red>
+          <h1 slot="kırmızıSlot">Bu kırmızıdır</h1>
+        </app-red> -->
 
-        <!-- <app-memory>
-          <h1 slot="heading">Güzel bir gün</h1>
-          <p>Bu çok güzel bir anıydı</p>
-        </app-memory>-->
+        <component :is="selectedTheme">
+          <h1 slot="maviSlot">Bu Mavidir</h1>
+           <h1 slot="yesilSlot">Bu Yeşildir</h1>
+           <h1 slot="kırmızıSlot">Bu kırmızıdır</h1>
+        </component>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Memory from './components/Memory'
-import NewMemory from './components/NewMemory'
-import Author from './components/Author'
+import Blue from './components/Blue.vue'
+import Green from './components/Green.vue'
+import Red from './components/Red.vue'
 
 export default {
   data () {
     return {
-      selectedComponent: 'appMemory'
+      selectedTheme: 'appBlue'
     }
   },
+
   components: {
-    appMemory: Memory,
-    appNewMemory: NewMemory,
-    appAuthor: Author
+    appBlue: Blue,
+    appGreen: Green,
+    appRed: Red
   }
 }
 </script>

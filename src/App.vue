@@ -1,32 +1,22 @@
 <template>
   <div class="container">
-    <app-header></app-header>
-    <hr>
     <div class="row">
-      <app-servers></app-servers>
-      <app-server-details></app-server-details>
+      <div class="col-md-6 col-md-offset-3">
+        <app-memory>
+          <h1 slot="heading">Güzel bir gün</h1>
+          <p slot="content"> Bu çok güzel bir anıydı</p>
+        </app-memory>
+      </div>
+      </div>
     </div>
-    <hr>
-    <app-footer></app-footer>
-  </div>
 </template>
 
 <script>
-import Header from './components/Common/Header'
-import Footer from './components/Common/Footer'
-import Servers from './components/Server/Servers'
-import ServerDetails from './components/Server/ServerDetails'
-
+import Memory from './Memory'
 export default {
-  components: {
-    appHeader: Header,
-    appFooter: Footer,
-    appServers: Servers,
-    appServerDetails: ServerDetails
-  }
+  components: { appMemory: Memory }
 }
 </script>
 
 <style>
-
 </style>

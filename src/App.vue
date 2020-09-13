@@ -1,52 +1,54 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <br />
-        <button @click="selectedTheme = 'appBlue'" class="btn btn-primary">Mavi Temayı Yükle</button>
-        <button @click="selectedTheme = 'appGreen'" class="btn btn-success">Yeşil Temayı Yükle</button>
-        <button @click="selectedTheme = 'appRed'" class="btn btn-danger">Kırmızı Temayı Yükle</button>
-        <hr />
+    <h1 class="text-center">Ürün Ekleme Uygulaması</h1>
+    <hr />
+    <app-new-product></app-new-product>
+    <br />
+    <br />
+    <app-progress></app-progress>
+    <br />
+    <br />
 
-        <!-- <app-blue>
-          <h1 slot="maviSlot">Bu Mavidir</h1>
-        </app-blue>
-        <app-green>
-          <h1 slot="yesilSlot">Bu Yeşildir</h1>
-        </app-green>
-        <app-red>
-          <h1 slot="kırmızıSlot">Bu kırmızıdır</h1>
-        </app-red> -->
-
-        <component :is="selectedTheme">
-          <h1 slot="maviSlot">Bu Mavidir</h1>
-           <h1 slot="yesilSlot">Bu Yeşildir</h1>
-           <h1 slot="kırmızıSlot">Bu kırmızıdır</h1>
-        </component>
-      </div>
-    </div>
+    <app-products></app-products>
   </div>
 </template>
 
 <script>
-import Blue from './components/Blue.vue'
-import Green from './components/Green.vue'
-import Red from './components/Red.vue'
+import NewProduct from './components/NewProduct'
+import Progress from './components/Progress'
+import Products from './components/Products'
 
 export default {
-  data () {
-    return {
-      selectedTheme: 'appBlue'
-    }
-  },
-
   components: {
-    appBlue: Blue,
-    appGreen: Green,
-    appRed: Red
+    appNewProduct: NewProduct,
+    appProgress: Progress,
+    appProducts: Products
   }
+
 }
 </script>
 
 <style>
+body {
+  background-color: aliceblue;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.card {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.card:last-child {
+  margin-right: 0px;
+}
+
+.col-md-2 {
+  max-width: 15.666667% !important;
+}
+
+.product-container {
+  margin-left: 15px;
+}
 </style>

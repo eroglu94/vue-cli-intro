@@ -67,15 +67,16 @@
               <div class="row">
                 <div class="col-md-12">
                   <button
-                    class="btn btn-primary">Gönder!
-                  </button>
+                    class="btn btn-primary"
+                    @click.prevent="submit"
+                  >Gönder!</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" v-if="isSubmitted">
         <div class="panel panel-info">
           <div class="panel-heading">
             <h4>Form Verileri</h4>
@@ -113,7 +114,13 @@ export default {
         gender: '',
         cities: ['İstanbul', 'Ankara', 'Adana', 'İzmir'],
         selectedCity: ''
-      }
+      },
+      isSubmitted: false
+    }
+  },
+  methods: {
+    submit () {
+      this.isSubmitted = true
     }
   }
 }

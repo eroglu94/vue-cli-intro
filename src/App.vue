@@ -1,131 +1,54 @@
 <template>
   <div class="container">
-    <h3>Form Verileriyle Çalışmak</h3>
-    <hr>
     <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-warning">
-          <div class="panel-heading">
-            <h4>Başvuru Formu</h4>
-          </div>
-          <div class="panel-body">
-            <form>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="username">Kullanıcı Adı</label>
-                    <input type="text" id="username" class="form-control" v-model="userData.username">
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Şifre</label>
-                    <input type="password" id="password" class="form-control" v-model.lazy="userData.password">
-                  </div>
-                  <div class="form-group">
-                    <label for="age">Yaş</label>
-                    <input type="number" id="age" class="form-control" v-model.number.trim="userData.age">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12 form-group">
-                  <label for="message">Açıklama</label><br>
-                  <textarea id="message" rows="3" class="form-control" v-model="userData.message"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>
-                      <input type="checkbox" v-model="userData.interests" value="yazilim"> Yazılım
-                    </label>
-                    <label>
-                      <input type="checkbox" v-model="userData.interests" value="donanim"> Donanım
-                    </label>
-                  </div>
-
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12 form-group">
-                  <label>
-                    <input v-model="userData.gender" type="radio" value="erkek"> Erkek
-                  </label>
-                  <label>
-                    <input v-model="userData.gender" type="radio" value="kadin"> Kadın
-                  </label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12 from-group">
-                  <label>Şehir</label>
-                  <select v-model="userData.selectedCity" class="form-control">
-                    <option :selected="city == 'Adana'" v-for="city in userData.cities">{{ city }}</option>
-                  </select>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-md-12">
-                  <button
-                    class="btn btn-primary"
-                    @click.prevent="submit"
-                  >Gönder!</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6" v-if="isSubmitted">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <h4>Form Verileri</h4>
-          </div>
-          <div class="panel-body">
-            <p>Kullanıcı Adı: {{ userData.username }}</p>
-            <p>Şifre: {{userData.password}}</p>
-            <p>Yaş: {{ userData.age }}</p>
-            <p>Açıklama: {{userData.message}}</p>
-            <p><strong>İlgi Alanları</strong></p>
-            <ul>
-              <li v-for="item  in userData.interests">{{item}}</li>
-            </ul>
-            <p>Cinsiyet: {{userData.gender}}</p>
-            <p>Şehir: {{userData.selectedCity}}</p>
-            <p>Toggle:</p>
-          </div>
-        </div>
+      <div class="col-md-6 col-md-offset-3">
+        <h3>VueJs ile gelen Directive Tanımları</h3>
+        <p v-text="'deneme yanılma methodu her zaman iyidir'"></p>
+        <p v-html="'<strong>Bu da v-html</strong>'"></p>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h3>Custom Directive</h3>
+        <p
+          v-color:background.delay.flash="'blue'"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, earum?</p>
+        <p
+          v-color="'red'"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, earum?</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      userData: {
-        username: '',
-        password: '',
-        age: 30,
-        message: '',
-        interests: [],
-        gender: '',
-        cities: ['İstanbul', 'Ankara', 'Adana', 'İzmir'],
-        selectedCity: ''
-      },
-      isSubmitted: false
-    }
-  },
-  methods: {
-    submit () {
-      this.isSubmitted = true
+  directives: {
+    color: { // Local Directive Tanımı
+      bind (el, binding, vnode) {
+        var delay = 0
+        if (binding.modifiers.delay) {
+          delay = 2000
+        }
+
+        if (binding.modifiers.flash) {
+          const firstColor = binding.value
+          const secondColor = '#fbbd08'
+          const currentColor = firstColor
+        } else {
+          setInterval(() => {
+            if (binding.arg === 'background') {
+              el.style.backgroundColor = binding.value
+            } else {
+              el.style.color = binding.value
+            }
+          }, delay)
+        }
+      }
     }
   }
 }
 </script>
 
 <style>
-
 </style>

@@ -1,22 +1,12 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h3>VueJs ile gelen Directive Tanımları</h3>
-        <p v-text="'deneme yanılma methodu her zaman iyidir'"></p>
-        <p v-html="'<strong>Bu da v-html</strong>'"></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h3>Custom Directive</h3>
-        <p
-          v-color:background.delay.flash="'blue'"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, earum?</p>
-        <p
-          v-color="'red'"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, earum?</p>
-      </div>
+    <div class="col-md-6 col-md-offset-3">
+      <h3 v-custom-on:click="clicked">Directive Sınavı</h3>
+      <!-- Soru -->
+      <!-- Event'leri dinleyecek v-on gibi çalışan bir Directive geliştiriniz. -->
+
+<div class="customOn" v-custom-on:mousemove="mousemove"></div>
+
     </div>
   </div>
 </template>
@@ -24,31 +14,30 @@
 <script>
 export default {
   directives: {
-    color: { // Local Directive Tanımı
+    customOn: {
       bind (el, binding, vnode) {
-        var delay = 0
-        if (binding.modifiers.delay) {
-          delay = 2000
-        }
-
-        if (binding.modifiers.flash) {
-          const firstColor = binding.value
-          const secondColor = '#fbbd08'
-          const currentColor = firstColor
-        } else {
-          setInterval(() => {
-            if (binding.arg === 'background') {
-              el.style.backgroundColor = binding.value
-            } else {
-              el.style.color = binding.value
-            }
-          }, delay)
-        }
+        var type = binding.arg
+        var fn = binding.value
+        el.addEventListener(type, fn)
       }
+
+    }
+  },
+  methods: {
+    clicked () {
+      alert('tıklandı')
+    },
+    mousemove () {
+      console.log('mouse moved!!!')
     }
   }
 }
 </script>
 
 <style>
+.customOn{
+width: 100px;
+height: 100px;
+border: 1px solid red;
+}
 </style>

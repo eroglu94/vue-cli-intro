@@ -2,54 +2,79 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <!-- Soru 1 -->
-        <!-- Girmiş olduğunuz yazıyı tersten yazacak bir Filter tanımı yapınız ve bunu <p> içerisinde uygulayınız -->
-        <input type="text" v-model="message" />
-        <p>{{ message | makeReverse }}</p>
-        <p>{{ message }}</p>
+        <h3>Animation ve Transitioasdsn</h3>
+        <hr />
 
-        <!-- Soru 2 -->
-        <!-- Global bir Filter tanımlayarak size kelime sayısını ve kelimeyi veren bir Filter tanımı yapınız -->
-        <!-- Örneğin : "videosinif.com" => videosinif.com (14) Şeklinde çıktı vermelidir -->
-        <p>{{ message | countLetter }}</p>
+        <button class="btn btn-primary" @click="show = !show">Kutuyu Göster / Gizle</button>
 
-        <!-- Soru 3 -->
-        <!-- Soru 1 ve 2 deki uygulamaların aynısını Computed Property kullanarak yapınız -->
+        <transition name="fade">
+          <div
+            style="margin-top:20px;"
+            class="alert alert-success"
+            v-if="show"
+          >Bu Bir Alert Kutusudur</div>
+        </transition>
 
-        <h3>Computed İle yapılanlar</h3>
-        <p>{{ makeReverse }}</p>
-        <p>{{ countLetter }}</p>
+        <transition name="slide">
+          <div
+            style="margin-top:20px;"
+            class="alert alert-warning"
+            v-if="show"
+          >Bu Bir Alert Kutusudur</div>
+        </transition>
 
-        <!-- Soru 4 -->
-        <!-- 3.Uygulamadaki Computed Property'leri bir Mixin aracılığı ile tanımlayarak tekrardan kodlarınızı düzenleyiniz-->
+        <transition
+          enter-class
+          enter-active-class="animate__animated animate__rubberBand"
+          leave-class
+          leave-active-class="animate__animated animate__backOutUp"
+        >
+          <div style="margin-top:20px;" class="alert alert-warning" v-if="show">Animate.css</div>
+        </transition>
 
-<!-- statik yapılacakmış. kolay yaparsın. ben dinamik yapılacak zannetmiştim -->
+        <div style="margin-top:20px;" class="alert alert-warning animate__animated animate__rubberBand" v-if="show">Animate.css</div>
 
       </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data () {
     return {
-      message: ''
-    }
-  },
-  filters: {
-    makeReverse (value) {
-      return value.split('').reverse().join('')
-    }
-  },
-  computed: {
-    makeReverse () {
-      return this.message.split('').reverse().join('')
-    },
-    countLetter () {
-      return '( ' + this.message + ' ) ' + this.message.length
+      show: false
     }
   }
 }
+
 </script>
+
 <style>
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 1s;
+}
+.fade-leave {
+}
+.fade-leave-active {
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+.slide-enter {
+  animation: ;
+}
+.slide-enter-active {
+}
+
+.slide-leave {
+}
+.slide-leave-active {
+}
+
+@keyframes slide-in {
+}
 </style>

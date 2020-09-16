@@ -4,8 +4,8 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-Vue.filter('toLowerCase', (value) => {
-  return value.toLowerCase()
+Vue.filter('countLetter', (value) => {
+  return '( ' + value + ' ) ' + value.length
 })
 
 new Vue({

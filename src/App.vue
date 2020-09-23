@@ -11,7 +11,10 @@
         <button class="btn btn-success" @click="getUsers()">Verileri Getir</button>
         <hr />
         <ul class="list-group">
-          <li class="list-group-item" v-for="user in userList">{{ user.userName }}</li>
+          <li class="list-group-item" v-for="user in userList">
+            <span>{{ user.data.userName }} </span>
+            <button class="btn btn-xs btn-danger" @click="deleteUser(user.key)">Sil</button>
+          </li>
         </ul>
       </div>
     </div>
@@ -28,13 +31,13 @@ export default {
   },
   methods: {
     saveUser () {
-      this.$http.post('', { userName: this.userName })
+      this.$http.post('users.json', { userName: this.userName })
         .then((response) => {
           console.log(response)
         })
     },
     getUsers () {
-      this.$http.get()
+      this.$http.get('users.json')
         .then((response) => {
           // console.log(response.data)
           // console.log(response.data)
@@ -42,8 +45,17 @@ export default {
         }).then(data => {
           this.userList = []
           for (const key in data.userList) {
-            this.userList.push(data.userList[key])
+            this.userList.push({
+              key: key,
+              data: data.userList[key]
+            })
           }
+        })
+    },
+    deleteUser (userKey) {
+      this.$http.delete('users/' + userKey + '.json')
+        .then((response) => {
+          console.log(response)
         })
     }
   }

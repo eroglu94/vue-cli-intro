@@ -1,16 +1,21 @@
 <template>
-<div class="container">
+  <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <router-view></router-view>
-        </div>
+      <div class="col-md-12">
+        <app-header></app-header>
+        <router-view></router-view>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-export default {
+import Header from './components/Header'
 
+export default {
+  components: {
+    appHeader: Header
+  }
 }
 </script>
 

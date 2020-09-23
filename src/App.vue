@@ -26,7 +26,8 @@ export default {
   data () {
     return {
       userName: '',
-      userList: []
+      userList: [],
+      resource: {}
     }
   },
   methods: {
@@ -36,7 +37,8 @@ export default {
       //     console.log(response)
       //   })
 
-      this.$resource('users.json').save({}, { userName: this.userName })
+      // this.$resource('users.json').save({}, { userName: this.userName })
+      this.resource.kaydet({}, { userName: this.userName })
     },
     getUsers () {
       this.$resource('users.json').get()
@@ -61,6 +63,12 @@ export default {
       //   })
       this.$resource.delete('users/' + userKey + '.json')
     }
+  },
+  created () {
+    const customActions = {
+      kaydet: { method: 'POST', url: 'users.json' }
+    }
+    this.resource = this.$resource('users.json', {}, customActions)
   }
 }
 </script>

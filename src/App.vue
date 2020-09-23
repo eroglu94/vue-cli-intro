@@ -31,13 +31,15 @@ export default {
   },
   methods: {
     saveUser () {
-      this.$http.post('users.json', { userName: this.userName })
-        .then((response) => {
-          console.log(response)
-        })
+      // this.$http.post('users.json', { userName: this.userName })
+      //   .then((response) => {
+      //     console.log(response)
+      //   })
+
+      this.$resource('users.json').save({}, { userName: this.userName })
     },
     getUsers () {
-      this.$http.get('users.json')
+      this.$resource('users.json').get()
         .then((response) => {
           // console.log(response.data)
           // console.log(response.data)
@@ -53,10 +55,11 @@ export default {
         })
     },
     deleteUser (userKey) {
-      this.$http.delete('users/' + userKey + '.json')
-        .then((response) => {
-          console.log(response)
-        })
+      // this.$http.delete('users/' + userKey + '.json')
+      //   .then((response) => {
+      //     console.log(response)
+      //   })
+      this.$resource.delete('users/' + userKey + '.json')
     }
   }
 }

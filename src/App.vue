@@ -38,12 +38,11 @@ export default {
         .then((response) => {
           // console.log(response.data)
           // console.log(response.data)
+          return response.json()
+        }).then(data => {
           this.userList = []
-          const data = response.data
-          for (const key in data) {
-            console.log(data[key])
-
-            this.userList.push(data[key])
+          for (const key in data.userList) {
+            this.userList.push(data.userList[key])
           }
         })
     }

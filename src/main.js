@@ -4,7 +4,7 @@ import './registerServiceWorker'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
-
+Vue.http.options.root = 'https://vuejs-vue-resource-7ecb9.firebaseio.com/users.json'
 Vue.config.productionTip = false
 
 new Vue({

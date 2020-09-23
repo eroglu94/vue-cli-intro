@@ -28,13 +28,13 @@ export default {
   },
   methods: {
     saveUser () {
-      this.$http.post('https://vuejs-vue-resource-7ecb9.firebaseio.com/users.json', { userName: this.userName })
+      this.$http.post('', { userName: this.userName })
         .then((response) => {
           console.log(response)
         })
     },
     getUsers () {
-      this.$http.get('https://vuejs-vue-resource-7ecb9.firebaseio.com/users.json')
+      this.$http.get()
         .then((response) => {
           // console.log(response.data)
           // console.log(response.data)

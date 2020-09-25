@@ -2,6 +2,7 @@
   <div class="container">
     <h3>User Component</h3>
     <hr />
+    <p>User ID : {{ id }}</p>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, earum
       libero odit optio repellendus sed soluta? Animi, atque blanditiis commodi
@@ -14,6 +15,11 @@
 </template>
 <script>
 export default {
+  data () {
+    return {
+      id: this.$route.params.id
+    }
+  },
   methods: {
     navigateToHome () {
       // Navigate için 3 farklı yol vardır. Herbiri aşağıda

@@ -8,14 +8,10 @@
     ><a>Home</a></router-link>
     <router-link
       exact-active-class="active"
-      to="/user/1"
+      to="/user"
       tag="li"
     ><a>User</a></router-link>
-    <router-link
-      exact-active-class="active"
-      to="/user/2"
-      tag="li"
-    ><a>User</a></router-link>
+
     <!-- tag="li" kısmı şu işe yarar: o elemet bir li elementi gibi davranacak demektir. -->
   </ul>
 </template>

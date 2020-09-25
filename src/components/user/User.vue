@@ -27,6 +27,11 @@ export default {
       // this.$router.push({ path: '/' }) // obje alır
       this.$router.push({ name: 'anasayfa' }) // yine obje alır fakat custom isimlendirilmiş routese-sayfaya gider
     }
+  },
+  watch: {
+    '$route' (value, oldValue) {
+      this.id = value.params.id
+    }
   }
 }
 </script>

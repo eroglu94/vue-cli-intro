@@ -8,8 +8,19 @@
       consequatur distinctio dolorem eaque eos expedita, modi reprehenderit
       repudiandae soluta.
     </p>
+    <hr>
+    <button class="btn btn-success" @click="navigateToHome">Home Componentine Git</button>
   </div>
 </template>
 <script>
-export default {}
+export default {
+  methods: {
+    navigateToHome () {
+      // Navigate için 3 farklı yol vardır. Herbiri aşağıda
+      // this.$router.push('/') //direk strin alır
+      // this.$router.push({ path: '/' }) // obje alır
+      this.$router.push({ name: 'anasayfa' }) // yine obje alır fakat custom isimlendirilmiş routese-sayfaya gider
+    }
+  }
+}
 </script>

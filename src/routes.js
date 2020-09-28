@@ -23,7 +23,15 @@ export const routes = [
     name: 'kullanıcı',
     children: [
       { path: '', component: UserStart }, // /user
-      { path: ':id', component: UserDetail }, // /user/12
+      {
+        path: ':id',
+        component: UserDetail,
+        beforeEnter: (to, from, next) => {
+          // root seviyesinde kontrol. Componentleri veya spesifik url leri kontrol eder
+          console.log('root seviyesinde kontrol')
+          next() // İçine false yazarsak user/:id olan sayfayı açmayacak browser
+        }
+      }, // /user/12
       { path: ':id/edit', component: UserEdit, name: 'userEdit' } // /user/12/edit
     ]
   },

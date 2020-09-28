@@ -18,5 +18,16 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      deneme: 'Bu bir security checktir. Bu yazıyı görüyorsa, güvenli değildir demektir.'
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    console.log('Component seviyesinde kontrol')
+    console.log(this.deneme) // security check
+    next(false)
+  }
+}
 </script>

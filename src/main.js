@@ -17,6 +17,15 @@ const routerA = new VueRouter({
   }
 })
 
+routerA.beforeEach((to, from, next) => {
+  // next('/user')
+  // next({ name: 'anasayfa' })
+  // next(false)
+  // Global olarak bütün routeleri kontrol eder
+  console.log('Global olarak kontrol edildi.')
+  next()
+})
+
 Vue.config.productionTip = false
 
 new Vue({

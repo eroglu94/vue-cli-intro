@@ -2,8 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <app-header></app-header>
+        <hr>
+        <router-view name="header-top" ></router-view>
         <router-view></router-view>
+        <router-view name="header-bottom" ></router-view>
       </div>
     </div>
   </div>

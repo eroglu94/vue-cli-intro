@@ -26,5 +26,13 @@ export const routes = [
       { path: ':id', component: UserDetail }, // /user/12
       { path: ':id/edit', component: UserEdit, name: 'userEdit' } // /user/12/edit
     ]
+  },
+
+  {
+    path: '/redirect', redirect: '/user'
+    // path: '/redirect', redirect: { name: 'anasayfa' }
+  },
+  {
+    path: '*', redirect: '/' // anasayfaya yönlendirir.
   }
 ]

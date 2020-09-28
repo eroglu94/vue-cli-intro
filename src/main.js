@@ -7,7 +7,14 @@ import { routes } from './routes'
 Vue.use(VueRouter)
 const routerA = new VueRouter({
   routes: routes,
-  mode: 'history'
+  mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  }
 })
 
 Vue.config.productionTip = false

@@ -6,7 +6,12 @@
     <router-link
       tag="button"
       class="btn btn-primary"
-      :to="{name : 'userEdit' , params : {id : $route.params.id}, query:{name:'gohkan', lastName:'kandemir'}}"
+      :to="{
+      name : 'userEdit' ,
+      params : {id : $route.params.id},
+      query:{name:'gohkan', lastName:'kandemir'},
+      hash: '#data'
+      }"
     >
       Kullanıcıyı Düzenle
     </router-link>

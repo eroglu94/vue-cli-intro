@@ -26,8 +26,8 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     console.log('Component seviyesinde kontrol')
-    console.log(this.deneme) // security check
-    next(false)
+    // console.log(this.deneme) // security check
+    next(true)
   }
 }
 </script>

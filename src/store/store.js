@@ -14,5 +14,10 @@ export const store = new Vuex.Store({
     stringCounter (state) {
       return state.counter + '.kez Tıklandı'
     }
+  },
+  mutations: {
+    updateCounter (state, value) {
+      state.counter += value
+    }
   }
 })

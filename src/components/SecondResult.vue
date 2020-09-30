@@ -1,14 +1,34 @@
 <template>
   <div>
-    <p class="counter-container"> Sayaç : {{ counter }}</p>
+    <p class="counter-container"> Sayaç : {{ double }}</p>
+    <p class="counter-container"> Tıklama Sayısı : {{ stringC }}</p>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
 
+  // Direk aynı ismi kullanabilriiz.
+  // computed: mapGetters([
+  //   'getDoubleCounter',
+  //   'stringCounter'
+  // ]),
+  // -------------------
+  // mapGetters içindeki objelerin isimlerini değiştirebiliriz
+  // computed: mapGetters({
+  //   double: 'getDoubleCounter',
+  //   stringC: 'stringCounter'
+  // })
+
+  // Hem getters hem de kendi custom computed methodlarını kullanacaksak böyle kullanırız. ecma script spread operatör özelliği
   computed: {
-    counter () {
-      return this.$store.state.counter * 2
+    ...mapGetters({
+      double: 'getDoubleCounter',
+      stringC: 'stringCounter'
+    }),
+    customProp () {
+      return 'aa'
     }
   }
 }
